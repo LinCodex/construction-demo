@@ -24,15 +24,37 @@ const AppContent: React.FC = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let requestId: number;
+
     const handleScroll = () => {
-      if (parallaxRef.current) {
-        const scrolled = window.scrollY;
-        parallaxRef.current.style.transform = `translateY(-${scrolled * 0.15}px)`;
+      if (!parallaxRef.current) return;
+
+      // Disable parallax on mobile (width < 768px) to prevent jitter
+      if (window.innerWidth < 768) {
+        parallaxRef.current.style.transform = 'translateY(0px)';
+        return;
       }
+
+      const scrolled = window.scrollY;
+      parallaxRef.current.style.transform = `translateY(-${scrolled * 0.15}px)`;
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => {
+      cancelAnimationFrame(requestId);
+      requestId = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', handleScroll); // Check on resize too
+    
+    // Initial check
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', handleScroll);
+      cancelAnimationFrame(requestId);
+    };
   }, []);
 
   return (
