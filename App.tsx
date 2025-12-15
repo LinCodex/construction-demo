@@ -58,11 +58,11 @@ const AppContent: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-[#1a1512]">
+    <div className="relative min-h-screen w-full overflow-hidden">
       {/* Background Image Container */}
       <div 
         ref={parallaxRef} 
-        className="fixed top-0 left-0 w-full h-[120vh] z-0"
+        className="fixed top-[-10vh] left-0 w-full h-[120vh] z-0"
         style={{ willChange: 'transform' }}
       >
         <img 

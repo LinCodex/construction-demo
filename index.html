@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f2f2f2" />
     <title>Demo - Fix, Build & Renovate</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,10 +12,13 @@
     <style>
       body {
         font-family: 'Manrope', sans-serif;
-        background-color: #1a1512; /* Dark background to match theme and hide overscroll bars */
+        /* Gradient background to match the image: Light top, Dark bottom */
+        background: linear-gradient(to bottom, #f2f2f2 0%, #1a1512 100%); 
+        min-height: 100vh;
+        background-attachment: fixed; /* Ensures gradient stays in place during scroll */
       }
       html {
-        background-color: #1a1512;
+        background-color: #f2f2f2; /* Fallback for top overscroll */
       }
       .font-serif-display {
         font-family: 'Playfair Display', serif;
