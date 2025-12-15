@@ -61,11 +61,10 @@ const AppContent: React.FC = () => {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
       {/* Background Image Container */}
-      {/* Mobile: top-[-4vh] h-[108vh] per user request to cover edges completely */}
-      {/* Desktop: top-[-10vh] h-[120vh] allows for parallax movement */}
+      {/* Mobile: top-0 h-[108vh] anchors to top and provides buffer for bottom address bar */}
       <div 
         ref={parallaxRef} 
-        className="fixed left-0 w-full z-0 top-[-4vh] h-[108vh] md:top-[-10vh] md:h-[120vh]"
+        className="fixed left-0 w-full z-0 top-0 h-[108vh] md:top-[-10vh] md:h-[120vh]"
         style={{ willChange: 'transform' }}
       >
         <img 
