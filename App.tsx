@@ -30,6 +30,7 @@ const AppContent: React.FC = () => {
       if (!parallaxRef.current) return;
 
       // Disable parallax on mobile (width < 768px) to prevent jitter
+      // On mobile, the CSS handles the fixed full coverage
       if (window.innerWidth < 768) {
         parallaxRef.current.style.transform = 'translateY(0px)';
         return;
@@ -60,9 +61,11 @@ const AppContent: React.FC = () => {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
       {/* Background Image Container */}
+      {/* Mobile: top-[-4vh] h-[108vh] per user request to cover edges completely */}
+      {/* Desktop: top-[-10vh] h-[120vh] allows for parallax movement */}
       <div 
         ref={parallaxRef} 
-        className="fixed top-[-10vh] left-0 w-full h-[120vh] z-0"
+        className="fixed left-0 w-full z-0 top-[-4vh] h-[108vh] md:top-[-10vh] md:h-[120vh]"
         style={{ willChange: 'transform' }}
       >
         <img 

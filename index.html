@@ -12,20 +12,18 @@
     <style>
       body {
         font-family: 'Manrope', sans-serif;
-        /* Gradient background to match the image: Light top, Dark bottom */
-        background: linear-gradient(to bottom, #f2f2f2 0%, #1a1512 100%); 
+        background-color: #1a1512;
         min-height: 100vh;
-        background-attachment: fixed; /* Ensures gradient stays in place during scroll */
+        /* Prevent rubber-banding/overscroll on mobile to stop showing background bars */
+        overscroll-behavior-y: none;
       }
       html {
-        background-color: #f2f2f2; /* Fallback for top overscroll */
+        background-color: #1a1512;
+        overscroll-behavior-y: none;
+        scroll-behavior: smooth;
       }
       .font-serif-display {
         font-family: 'Playfair Display', serif;
-      }
-      /* Smooth scrolling */
-      html {
-        scroll-behavior: smooth;
       }
       /* Loading bar animation */
       @keyframes progress {
